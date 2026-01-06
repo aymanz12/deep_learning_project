@@ -42,21 +42,25 @@ The system includes a training pipeline (Jupyter Notebook) and a deployment-read
 
 The following results were obtained during model training on the MVTec AD dataset:
 
-| Component    | AUROC | Optimal Threshold |
-|:------------:|:-----:|:----------------:|:
-| Leather      | 0.9986| 28.48             |
-| Metal Nut    | 0.9839| 35.02             | 
-| Bottle       | 0.9929| 34.55             |
-| Zipper       | 0.9409| 26.60             |
+| Component    | AUROC | Optimal Threshold | Training Time |
+|:------------:|:-----:|:----------------:|:-------------:|
+| Leather      | 0.9986| 28.48             | ~19s          |
+| Metal Nut    | 0.9839| 35.02             | ~11s          |
+| Bottle       | 0.9929| 34.55             | ~13s          |
+| Zipper       | 0.9409| 26.60             | ~11s          |
 
 Memory bank size: 15,000 features per component (1,536-dimensional vectors from ResNet50)
 
 ---
+## 📊 Comparative Analysis
 
-## Comparative Analysis
-For comprehensive evaluation and comparison with alternative anomaly detection models (Autoencoder, EfficientAD, PaDim), please refer to the detailed report:
-  📄 BDIA2_Visual_Anomaly_Detection_Final_Report.pdf
-This report includes comparative performance analysis, benchmarking results, and implementation insights across all models.
+We conducted a rigorous comparison of PatchCore against other state-of-the-art anomaly detection models, including **Autoencoder**, **EfficientAD**, and **PaDim**.
+
+> **📘 Full Technical Report**
+>
+> For a deep dive into our benchmarking methodology, comparative performance metrics, and implementation details, please consult the final report:
+>
+> 📄 **[BDIA2_Visual_Anomaly_Detection_Final_Report.pdf](./BDIA2_Visual_Anomaly_Detection_Final_Report.pdf)**
 
 ## 🎯 Getting Started
 
@@ -132,16 +136,17 @@ Access the app at `http://localhost:8000`
 All required packages are listed in `requirements.txt`:
 
 ```
-fastapi>=0.112.0
-uvicorn[standard]>=0.24.0
-gradio>=4.44.1
-numpy<2.0
-Pillow>=10.0.0
-python-multipart
-opencv-python-headless
-# The AI Brain (CPU versions specifically)
-torch==2.2.2+cpu
-torchvision==0.17.2+cpu
+torch
+torchvision
+torchaudio
+fastapi
+uvicorn
+gradio
+opencv-python
+pillow
+numpy
+scikit-learn
+scipy
 ```
 
 Install all dependencies with:
