@@ -53,6 +53,11 @@ Memory bank size: 15,000 features per component (1,536-dimensional vectors from 
 
 ---
 
+## Comparative Analysis
+For comprehensive evaluation and comparison with alternative anomaly detection models (Autoencoder, EfficientAD, PaDim), please refer to the detailed report:
+  📄 BDIA2_Visual_Anomaly_Detection_Final_Report.pdf
+This report includes comparative performance analysis, benchmarking results, and implementation insights across all models.
+
 ## 🎯 Getting Started
 
 ### 1. Prerequisites
