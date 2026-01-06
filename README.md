@@ -140,17 +140,16 @@ Access the app at `http://localhost:8000`
 All required packages are listed in `requirements.txt`:
 
 ```
-torch
-torchvision
-torchaudio
-fastapi
-uvicorn
-gradio
-opencv-python
-pillow
-numpy
-scikit-learn
-scipy
+fastapi>=0.112.0
+uvicorn[standard]>=0.24.0
+gradio>=4.44.1
+numpy<2.0
+Pillow>=10.0.0
+python-multipart
+opencv-python-headless
+# The AI Brain (CPU versions specifically)
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
 ```
 
 Install all dependencies with:
