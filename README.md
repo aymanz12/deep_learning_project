@@ -175,10 +175,3 @@ pip install -r requirements.txt
 
 ---
 
-## 📄 License
-
-[Add your license information here]
-
-## 🤝 Contributing
-
-[Add contribution guidelines here]
