@@ -29,10 +29,14 @@ The system includes a training pipeline (Jupyter Notebook) and a deployment-read
 │   └── __init__.py
 ├── models/                # Directory for saved .pth model files
 ├── notebook/
-│   └── patchcore_anomaly_detection.ipynb  # Training & Evaluation pipeline
+│   ├── patchcore_anomaly_detection.ipynb  # Main Training & Evaluation pipeline (PatchCore)
+│   ├── EfficientAD_Model.ipynb            # Comparative Model: EfficientAD
+│   ├── PaDim.ipynb                        # Comparative Model: PaDim
+│   └── autoencoder_from_scratch_.ipynb    # Comparative Model: Autoencoder
 ├── build_and_push.sh      # Docker build script
 ├── Dockerfile             # Container configuration
 ├── requirements.txt       # Python dependencies
+├── BDIA2_Visual_Anomaly_Detection_Final_Report.pdf # Full comparative analysis report
 └── README.md
 ```
 
