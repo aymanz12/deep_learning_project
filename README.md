@@ -42,12 +42,12 @@ The system includes a training pipeline (Jupyter Notebook) and a deployment-read
 
 The following results were obtained during model training on the MVTec AD dataset:
 
-| Component    | AUROC | Optimal Threshold | Training Time |
-|:------------:|:-----:|:----------------:|:-------------:|
-| Leather      | 0.9986| 28.48             | ~19s          |
-| Metal Nut    | 0.9839| 35.02             | ~11s          |
-| Bottle       | 0.9929| 34.55             | ~13s          |
-| Zipper       | 0.9409| 26.60             | ~11s          |
+| Component    | AUROC | Optimal Threshold |
+|:------------:|:-----:|:----------------:|:
+| Leather      | 0.9986| 28.48             |
+| Metal Nut    | 0.9839| 35.02             | 
+| Bottle       | 0.9929| 34.55             |
+| Zipper       | 0.9409| 26.60             |
 
 Memory bank size: 15,000 features per component (1,536-dimensional vectors from ResNet50)
 
