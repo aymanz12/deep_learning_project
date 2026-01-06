@@ -14,13 +14,14 @@ The system includes a training pipeline (Jupyter Notebook) and a deployment-read
 ## 📸 App Demo
 
 ![App Interface](assets/app_demo_screenshot.png)
+
 *Figure 1: The Gradio web interface detecting anomalies in real-time.*
 
 ---
 
 ## 📂 Project Structure
 
-```text
+```
 .
 ├── app/
 │   ├── engine.py          # Core inference logic (PatchCore implementation)
@@ -33,73 +34,166 @@ The system includes a training pipeline (Jupyter Notebook) and a deployment-read
 ├── Dockerfile             # Container configuration
 ├── requirements.txt       # Python dependencies
 └── README.md
+```
 
-📊 Evaluation Results
+---
 
-The model was evaluated on the MVTec AD dataset (320x320 resolution) with the following performance metrics:
-OBJECT CLASS	IMG AUROC	PIX AUROC	F1 SCORE	ACCURACY	PRECISION	RECALL
-LEATHER	1.0000	0.9912	1.0000	1.0000	1.0000	1.0000
-BOTTLE	1.0000	0.9818	1.0000	1.0000	1.0000	1.0000
-METAL NUT	0.9873	0.9514	0.9838	0.9739	0.9891	0.9785
-ZIPPER	0.9307	0.9647	0.9442	0.9139	0.9649	0.9244
-SYSTEM MEAN	0.9795	0.9723	0.9820	0.9720	0.9885	0.9757
-🚀 Getting Started
-1. Prerequisites
+## 📊 Performance Metrics
 
-    Docker (Recommended for deployment)
+The model was evaluated on the MVTec AD dataset (320×320 resolution) with exceptional performance across all object classes:
 
-    Python 3.10+ (For local development)
+| Object Class  | IMG AUROC | PIX AUROC | F1 Score | Accuracy | Precision | Recall  |
+|:-------------:|:---------:|:---------:|:--------:|:--------:|:---------:|:-------:|
+| Leather       | 1.0000    | 0.9912    | 1.0000   | 1.0000   | 1.0000    | 1.0000  |
+| Bottle        | 1.0000    | 0.9818    | 1.0000   | 1.0000   | 1.0000    | 1.0000  |
+| Metal Nut     | 0.9873    | 0.9514    | 0.9838   | 0.9739   | 0.9891    | 0.9785  |
+| Zipper        | 0.9307    | 0.9647    | 0.9442   | 0.9139   | 0.9649    | 0.9244  |
+| **System Mean** | **0.9795** | **0.9723** | **0.9820** | **0.9720** | **0.9885** | **0.9757** |
 
-    GPU (Recommended for training, but inference runs on CPU)
+---
 
-2. Generate the Models
+## 🚀 Training Results
 
-Note: The .pth model files are not included in this repository to save space. You must generate them first.
+The following results were obtained during model training on the MVTec AD dataset:
 
-    Open notebook/patchcore_anomaly_detection.ipynb.
+| Component    | AUROC | Optimal Threshold | Training Time |
+|:------------:|:-----:|:----------------:|:-------------:|
+| Leather      | 0.9986| 28.48             | ~19s          |
+| Metal Nut    | 0.9839| 35.02             | ~11s          |
+| Bottle       | 0.9929| 34.55             | ~13s          |
+| Zipper       | 0.9409| 26.60             | ~11s          |
 
-    Run the notebook cells to download the MVTec dataset and train the models.
+Memory bank size: 15,000 features per component (1,536-dimensional vectors from ResNet50)
 
-    The trained models (e.g., patchcore_leather.pth) will be saved into the models/ directory.
+---
 
-3. Run Locally
+## 🎯 Getting Started
 
-Install the dependencies:
-Bash
+### 1. Prerequisites
 
+- **Docker** (Recommended for deployment)
+- **Python 3.10+** (For local development)
+- **GPU** (Recommended for training; inference runs efficiently on CPU)
+
+### 2. Generate the Models
+
+The `.pth` model files are not included in this repository to save space. You must generate them first:
+
+1. Open `notebook/patchcore_anomaly_detection.ipynb`
+2. Run all notebook cells to:
+   - Download the MVTec AD dataset
+   - Train PatchCore models for each object class
+   - Evaluate performance metrics
+3. Trained models (e.g., `patchcore_leather.pth`) will be saved to the `models/` directory
+
+### 3. Run Locally
+
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
+```
 
 Start the FastAPI server:
-Bash
 
+```bash
 uvicorn app.main:app --reload
+```
 
-Open your browser to http://127.0.0.1:8000/gradio to use the interface.
-🐳 Running with Docker
+Open your browser to `http://127.0.0.1:8000/gradio` to use the interface.
 
-This project is containerized for easy deployment.
+---
 
-Build and Run:
-Bash
+## 🐳 Running with Docker
 
+This project is containerized for seamless deployment.
+
+### Build and Run
+
+```bash
 # Make the build script executable
 chmod +x build_and_push.sh
 
-# Build the image (replace 'your-tag' with a name, e.g., 'v1')
+# Build the image (replace 'v1' with your desired tag)
 ./build_and_push.sh v1
 
 # Run the container
 docker run -p 8000:8000 your-image-name
+```
 
-Access the app at http://localhost:8000.
-🛠️ Technology Stack
+Access the app at `http://localhost:8000`
 
-    Algorithm: PatchCore (ResNet50 Backbone)
+---
 
-    Framework: PyTorch & TorchVision
+## 🛠️ Technology Stack
 
-    Backend: FastAPI (Python)
+- **Algorithm**: PatchCore (ResNet50 backbone)
+- **Deep Learning**: PyTorch & TorchVision
+- **Backend**: FastAPI
+- **Frontend**: Gradio
+- **Image Processing**: OpenCV, Pillow, NumPy
+- **Containerization**: Docker
 
-    Frontend: Gradio
+---
 
-    Image Processing: OpenCV, Pillow, NumPy
+## 📋 Dependencies
+
+All required packages are listed in `requirements.txt`:
+
+```
+torch
+torchvision
+torchaudio
+fastapi
+uvicorn
+gradio
+opencv-python
+pillow
+numpy
+scikit-learn
+scipy
+```
+
+Install all dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🔄 Workflow Overview
+
+**Training Phase** (Jupyter Notebook):
+1. Load MVTec AD dataset
+2. Extract features using pre-trained ResNet50
+3. Build memory bank from normal samples
+4. Compute optimal anomaly thresholds
+5. Evaluate on test set and save models
+
+**Inference Phase** (FastAPI/Gradio):
+1. Load trained model from disk
+2. Extract patch-level features from input image
+3. Compute nearest-neighbor distances to memory bank
+4. Generate anomaly maps and classification results
+5. Display results through web interface
+
+---
+
+## 📝 Notes
+
+- Models are trained on 320×320 resolution images
+- Memory banks contain 15,000 feature vectors per component class
+- Optimal thresholds are automatically computed during training
+- The system supports real-time inference with minimal latency
+- All components can be easily extended to support additional object classes
+
+---
+
+## 📄 License
+
+[Add your license information here]
+
+## 🤝 Contributing
+
+[Add contribution guidelines here]
