@@ -38,18 +38,6 @@ The system includes a training pipeline (Jupyter Notebook) and a deployment-read
 
 ---
 
-## 📊 Performance Metrics
-
-The model was evaluated on the MVTec AD dataset (320×320 resolution) with exceptional performance across all object classes:
-
-| Object Class  | IMG AUROC | PIX AUROC | F1 Score | Accuracy | Precision | Recall  |
-|:-------------:|:---------:|:---------:|:--------:|:--------:|:---------:|:-------:|
-| Leather       | 1.0000    | 0.9912    | 1.0000   | 1.0000   | 1.0000    | 1.0000  |
-| Bottle        | 1.0000    | 0.9818    | 1.0000   | 1.0000   | 1.0000    | 1.0000  |
-| Metal Nut     | 0.9873    | 0.9514    | 0.9838   | 0.9739   | 0.9891    | 0.9785  |
-| Zipper        | 0.9307    | 0.9647    | 0.9442   | 0.9139   | 0.9649    | 0.9244  |
-| **System Mean** | **0.9795** | **0.9723** | **0.9820** | **0.9720** | **0.9885** | **0.9757** |
-
 ---
 
 ## 🚀 Training Results
